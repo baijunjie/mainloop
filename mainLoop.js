@@ -35,11 +35,11 @@
 	}
 
 	function Loop() {
-		this.requestAnimationFrame = requestAnimationFrame;
+		this._requestAnimationFrame = requestAnimationFrame;
 
-		if (!this.requestAnimationFrame) {
+		if (!this._requestAnimationFrame) {
 			var lastTime = 0;
-			this.requestAnimationFrame = function(callback) {
+			this._requestAnimationFrame = function(callback) {
 				var currTime = new Date().getTime(),
 					timeToCall = Math.max(0, 16 - (currTime - lastTime)),
 					id = window.setTimeout(function() {
@@ -50,26 +50,26 @@
 			};
 		}
 
-		this.runFunc = []; //储存所有主循环中运行的方法
-		this.loopRun = false; //表示循环是否已经运行（只要 runFunc 中有需要运行的方法，即使已经 stop，也视为运行状态）
-		this.isStop = false; //表示循环是否暂停
-		this.timerID = 0;
+		this._runFunc = []; //储存所有循环中运行的方法
+		this._active = !!this._runFunc.length; //表示循环是否在激活状态。当循环中存在需要运行的方法时，则被判定为激活状态
+		this._isRun = true; //表示循环是否在运行状态
+		this._timerID = 0;
 		this._loopCallback = proxy(this._loopCallback, this);
 	}
 
 	Loop.prototype = {
 		_loopCallback: function() {
-			var i = this.runFunc.length;
+			var i = this._runFunc.length;
 			while (i--) {
-				if (this.runFunc[i]() === false) { // 如果方法返回 false，则将该方法移出循环
-					this.runFunc.splice(i, 1);
+				if (this._runFunc[i]() === false) { // 如果方法返回 false，则将该方法移出循环
+					this._runFunc.splice(i, 1);
 				}
 			}
 
-			if (this.runFunc.length) {
-				this.timerID = this.requestAnimationFrame.call(window, this._loopCallback);
+			if (this._runFunc.length) {
+				this._timerID = this._requestAnimationFrame.call(window, this._loopCallback);
 			} else {
-				this.loopRun = false;
+				this._active = false;
 			}
 		},
 
@@ -78,42 +78,42 @@
 			if (target) {
 				func = proxy(func, target);
 			}
-			this.runFunc.unshift(func);
+			this._runFunc.unshift(func);
 
-			if (this.loopRun) return this;
-			this.loopRun = true;
-			if (!this.isStop) {
-				this.timerID = this.requestAnimationFrame.call(window, this._loopCallback);
+			if (this._active) return this;
+			this._active = true;
+			if (this._isRun) {
+				this._timerID = this._requestAnimationFrame.call(window, this._loopCallback);
 			}
 			return this;
 		},
 
 		remove: function(func) {
 			if (typeof func !== 'function') {
-				this.runFunc = [];
+				this._runFunc = [];
 				return this;
 			}
-			var i = this.runFunc.length;
+			var i = this._runFunc.length;
 			while (i--) {
-				if (this.runFunc[i].guid === func.guid) {
-					this.runFunc.splice(i, 1);
+				if (this._runFunc[i].guid === func.guid) {
+					this._runFunc.splice(i, 1);
 					return this;
 				}
 			}
 		},
 
 		stop: function() { // 停止循环
-			if (this.isStop) return this;
-			this.isStop = true;
-			cancelAnimationFrame(this.timerID);
+			if (!this._isRun) return this;
+			this._isRun = false;
+			cancelAnimationFrame(this._timerID);
 			return this;
 		},
 
 		play: function() { // 启动循环
-			if (!this.isStop) return this;
-			this.isStop = false;
-			if (this.loopRun) {
-				this.timerID = this.requestAnimationFrame.call(window, this._loopCallback);
+			if (this._isRun) return this;
+			this._isRun = true;
+			if (this._active) {
+				this._timerID = this._requestAnimationFrame.call(window, this._loopCallback);
 			}
 			return this;
 		}
