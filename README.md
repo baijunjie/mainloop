@@ -9,10 +9,11 @@
 ``` html
 <script src="mainLoop.js"></script>
 <script>
+	var count = 0;
 	bjj.mainLoop.add(function() {
 		// loop action
-		
-		if (stop) {
+		count++;
+		if (count === 100) {
 			return false; // 当返回 false 时，该方法会从主循环中移除
 		}
 	});
