@@ -31,7 +31,7 @@
 bjj.mainLoop.add(func, target); 
 
 // func 可选，必须是 add 进循环的方法。如果是一个闭包函数，则不会有任何效果。
-// 如果 func 不是一个方法，则等同于无参数。此时 remove 会移除掉之前所有 add 进的循环的方法。
+// 如果 func 不是一个方法，则等同于无参数。此时 remove 会移除掉之前所有 add 进循环的方法。
 bjj.mainLoop.remove(func);
 
 // 停止循环
