@@ -1,6 +1,7 @@
 /*!
- * Pseudo mainLoop v0.0.2
- * @author baijunjie
+ * mainLoop v0.0.2
+ * (c) 2014-2016 BaiJunjie
+ * MIT Licensed.
  *
  * https://github.com/baijunjie/mainLoop.js
  */
