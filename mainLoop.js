@@ -1,5 +1,5 @@
 /*!
- * mainLoop v0.0.2
+ * mainLoop v0.0.3
  * (c) 2014-2016 BaiJunjie
  * MIT Licensed.
  *
@@ -8,10 +8,10 @@
 (function(root, factory) {
 	'use strict';
 
-	if (typeof define === 'function' && define.amd) {
-		define(factory);
-	} else if (typeof exports === 'object') {
+	if (typeof module === 'object' && typeof exports === 'object') {
 		module.exports = factory();
+	} else if (typeof define === 'function' && define.amd) {
+		define(factory);
 	} else {
 		root.bjj = root.bjj || {};
 		root.bjj.mainLoop = factory();
