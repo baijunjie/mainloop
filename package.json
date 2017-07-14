@@ -1,0 +1,19 @@
+{
+  "name": "mainloop",
+  "version": "1.0.1",
+  "description": "主循环",
+  "main": "mainloop.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baijunjie/mainLoop.js.git"
+  },
+  "author": "Junjie.Bai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baijunjie/mainLoop.js/issues"
+  },
+  "homepage": "https://github.com/baijunjie/mainLoop.js#readme"
+}

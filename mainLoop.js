@@ -1,6 +1,6 @@
 /*!
- * mainLoop v0.0.3
- * (c) 2014-2016 BaiJunjie
+ * mainLoop v1.0.1
+ * (c) 2014-2017 BaiJunjie
  * MIT Licensed.
  *
  * https://github.com/baijunjie/mainLoop.js
@@ -13,8 +13,7 @@
 	} else if (typeof define === 'function' && define.amd) {
 		define(factory);
 	} else {
-		root.bjj = root.bjj || {};
-		root.bjj.mainLoop = factory();
+		root.mainLoop = factory();
 	}
 
 }(this, function() {
@@ -143,11 +142,11 @@
 		return proxy;
 	}
 
-	var mainLoop = new Loop();
-	mainLoop.createLoop = function() {
+	var loop = new Loop();
+	loop.createLoop = function() {
 		return new Loop();
 	};
 
-	return mainLoop;
+	return loop;
 
 }));
