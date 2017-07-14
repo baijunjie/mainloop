@@ -1,5 +1,5 @@
 /*!
- * mainLoop v1.0.1
+ * mainLoop v1.0.2
  * (c) 2014-2017 BaiJunjie
  * MIT Licensed.
  *

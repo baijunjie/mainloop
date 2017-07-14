@@ -1,7 +1,7 @@
 {
   "name": "mainloop",
-  "version": "1.0.1",
-  "description": "主循环",
+  "version": "1.0.2",
+  "description": "主循环，顾名思义，就是建立一个与浏览器刷新频率相同的执行循环",
   "main": "mainloop.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
