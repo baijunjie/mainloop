@@ -1,6 +1,6 @@
 {
   "name": "mainloop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "主循环，顾名思义，就是建立一个与浏览器刷新频率相同的执行循环",
   "main": "mainloop.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baijunjie/mainLoop.js.git"
+    "url": "git+https://github.com/baijunjie/mainloop.git"
   },
   "author": "Junjie.Bai",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/baijunjie/mainLoop.js/issues"
+    "url": "https://github.com/baijunjie/mainloop/issues"
   },
-  "homepage": "https://github.com/baijunjie/mainLoop.js#readme"
+  "homepage": "https://github.com/baijunjie/mainloop#readme"
 }
